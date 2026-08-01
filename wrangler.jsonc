@@ -1,0 +1,7 @@
+{
+  "name": "my-astro-app",
+  "compatibility_date": "YYYY-MM-DD", // デプロイする日に更新してください
+  "assets": {
+    "directory": "./dist",
+  },
+}
