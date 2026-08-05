@@ -13,13 +13,14 @@
 		"fmt:check": "oxfmt --check"
 	},
 	"dependencies": {
-		"astro": "^7.1.6",
-		"kiso.css": "^1.2.4"
+		"@astrojs/cloudflare": "14.1.7",
+		"astro": "7.1.6",
+		"kiso.css": "1.2.4"
 	},
 	"devDependencies": {
-		"oxfmt": "^0.62.0",
-		"oxlint": "^1.77.0",
-		"wrangler": "^4.118.0"
+		"oxfmt": "0.62.0",
+		"oxlint": "1.77.0",
+		"wrangler": "4.118.0"
 	},
 	"engines": {
 		"node": ">=22.12.0"
