@@ -3,5 +3,9 @@
 		"source.fixAll.oxc": "always"
 	},
 	"editor.defaultFormatter": "oxc.oxc-vscode",
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode",
+		"editor.formatOnSave": true
+	}
 }
