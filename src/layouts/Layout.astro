@@ -1,13 +1,44 @@
+---
+import "kiso.css";
+
+export type Props = {
+	title?: string;
+	description?: string;
+};
+
+const { title: pageTitle, description: pageDescription } = Astro.props;
+
+const title = (pageTitle && `ZABLOG | ${pageTitle}`) || "ZABLOG";
+const description = pageDescription ?? "ZABLOGです。";
+const url = Astro.url;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title></head
-	>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no" />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={url} />
+		<meta property="og:title" content={title} />
+		<!-- TODO: og:imageを設定 -->
+		<!-- <meta property="og:image" content="" /> -->
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="ZABLOG" />
+		<meta property="og:locale" content="ja_JP" />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<!-- TODO: ファビコンなどの設定 -->
+		<!-- <link rel="icon" type="image/png" sizes="48x48" href="" />
+		<link rel="icon" sizes="any" type="image/svg+xml" href="" />
+		<link rel="apple-touch-icon" href="" />
+		<meta name="thumbnail" content="" /> -->
+	</head>
 	<body>
 		<slot />
 	</body>
