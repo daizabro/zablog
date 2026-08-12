@@ -1,0 +1,94 @@
+---
+import { SOURCE_LABELS, type Entry } from "../../lib/types";
+
+type Props = {
+	entry: Entry;
+};
+
+const { entry } = Astro.props;
+
+const formattedDate = entry.publishedAt.toLocaleDateString("ja-JP", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+---
+
+<li class="entry-card">
+	<a class="entry-card__link" href={entry.url} target="_blank" rel="noopener">
+		{
+			entry.thumbnail && (
+				<img class="entry-card__thumbnail" src={entry.thumbnail} alt="" loading="lazy" />
+			)
+		}
+		<div class="entry-card__body">
+			<span class="entry-card__source">{SOURCE_LABELS[entry.source]}</span>
+			<h3 class="entry-card__title">{entry.title}</h3>
+			{entry.excerpt && <p class="entry-card__excerpt">{entry.excerpt}</p>}
+			<time class="entry-card__date" datetime={entry.publishedAt.toISOString()}>
+				{formattedDate}
+			</time>
+		</div>
+	</a>
+</li>
+
+<style>
+	.entry-card {
+		list-style: none;
+	}
+
+	.entry-card__link {
+		display: flex;
+		gap: 1rem;
+		color: inherit;
+		text-decoration: none;
+		border: 1px solid #e0e0e0;
+		border-radius: 0.5rem;
+		padding: 1rem;
+	}
+
+	.entry-card__link:hover {
+		border-color: #b0b0b0;
+	}
+
+	.entry-card__thumbnail {
+		width: 8rem;
+		height: 4.5rem;
+		object-fit: cover;
+		border-radius: 0.25rem;
+		flex-shrink: 0;
+	}
+
+	.entry-card__body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		min-width: 0;
+	}
+
+	.entry-card__source {
+		font-size: 0.75rem;
+		color: #666;
+	}
+
+	.entry-card__title {
+		font-size: 1rem;
+		margin: 0;
+	}
+
+	.entry-card__excerpt {
+		font-size: 0.875rem;
+		color: #444;
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+
+	.entry-card__date {
+		font-size: 0.75rem;
+		color: #666;
+	}
+</style>

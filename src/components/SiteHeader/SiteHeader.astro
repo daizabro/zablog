@@ -1,0 +1,44 @@
+---
+import { SECTION_LABELS, SECTIONS } from "../../lib/types";
+---
+
+<header class="site-header">
+	<nav class="site-header__nav">
+		<a href="/">ZABLOG</a>
+		<ul class="site-header__list">
+			{
+				SECTIONS.map((section) => (
+					<li>
+						<a href={`/${section}`}>{SECTION_LABELS[section]}</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		border-bottom: 1px solid #e0e0e0;
+	}
+
+	.site-header__nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem 1.5rem;
+		max-width: 960px;
+		margin-inline: auto;
+	}
+
+	.site-header__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+</style>

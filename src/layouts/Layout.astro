@@ -1,5 +1,6 @@
 ---
 import "kiso.css";
+import SiteHeader from "../components/SiteHeader/SiteHeader.astro";
 
 export type Props = {
 	title?: string;
@@ -40,6 +41,7 @@ const url = Astro.url;
 		<meta name="thumbnail" content="" /> -->
 	</head>
 	<body>
+		<SiteHeader />
 		<slot />
 	</body>
 </html>

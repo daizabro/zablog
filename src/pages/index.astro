@@ -1,8 +1,68 @@
 ---
 import Hero from "../components/Hero/Hero.astro";
+import EntryList from "../components/EntryList/EntryList.astro";
 import Layout from "../layouts/Layout.astro";
+import { getLatestEntries } from "../lib/entries";
+import { SECTION_LABELS, SECTIONS } from "../lib/types";
+
+const latestEntries = await getLatestEntries(10);
 ---
 
 <Layout>
 	<Hero />
+
+	<main class="page">
+		<section>
+			<p>
+				害虫駆除業務からフロントエンドエンジニアに転向。趣味はブレイキンとスプラトゥーンです。
+				noteやZenn、しずかなインターネット、YouTubeに散らばっている発信をここにまとめています。
+			</p>
+		</section>
+
+		<section>
+			<h2>セクション</h2>
+			<ul class="section-links">
+				{
+					SECTIONS.map((section) => (
+						<li>
+							<a href={`/${section}`}>{SECTION_LABELS[section]}</a>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		<section>
+			<h2>最新の更新</h2>
+			<EntryList entries={latestEntries.map((entry) => entry.data)} />
+		</section>
+	</main>
 </Layout>
+
+<style>
+	.page {
+		max-width: 960px;
+		margin-inline: auto;
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.section-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.section-links a {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		border: 1px solid #e0e0e0;
+		border-radius: 0.5rem;
+		text-decoration: none;
+		color: inherit;
+	}
+</style>
