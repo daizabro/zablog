@@ -1,5 +1,21 @@
 {
 	"extends": "astro/tsconfigs/strict",
 	"include": [".astro/types.d.ts", "**/*"],
-	"exclude": ["dist"]
+	"exclude": ["dist"],
+	"compilerOptions": {
+		"lib": ["esnext", "DOM", "DOM.Iterable", "WebWorker"],
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"exactOptionalPropertyTypes": false,
+		"noPropertyAccessFromIndexSignature": false,
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"jsx": "preserve",
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		]
+	}
 }

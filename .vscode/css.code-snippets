@@ -1,0 +1,34 @@
+{
+	"PC メディアクエリ": {
+		"scope": "css",
+		"prefix": "pc",
+		"body": ["@container style(--pc: true) {", "\t$1", "}$0"],
+	},
+	"SP メディアクエリ": {
+		"scope": "css",
+		"prefix": "sp",
+		"body": ["@container style(--sp: true) {", "\t$1", "}$0"],
+	},
+	"ホバー時スタイル": {
+		"scope": "css",
+		"prefix": "hover",
+		"body": [
+			"@media (hover: hover) {",
+			"\t&:where(:any-link, :enabled, summary, label):hover {",
+			"\t\t$1",
+			"\t}",
+			"}$0",
+		],
+	},
+	"親要素ホバー時スタイル": {
+		"scope": "css",
+		"prefix": "group-hover",
+		"body": [
+			"@media (hover: hover) {",
+			"\t&:is(:where(:any-link, :enabled, summary, label):hover *) {",
+			"\t\t$1",
+			"\t}",
+			"}$0",
+		],
+	},
+}

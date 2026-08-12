@@ -1,0 +1,60 @@
+:root {
+	/* カラー */
+	--primary-black: #303030;
+
+	/* コンテンツ幅 */
+	--content-width: min(
+		calc(100% - var(--content-spacing-horizontal) * 2),
+		var(--content-max-width)
+	);
+
+	/* Breakpoints */
+	@media (width >= 60em) {
+		--pc: true;
+		--content-spacing-horizontal: 4rem;
+		--content-max-width: 70rem;
+	}
+	@media (width < 60em) {
+		--sp: true;
+		--content-spacing-horizontal: 1.5rem;
+		--content-max-width: 41.25rem;
+	}
+}
+
+:where(html) {
+	overflow-x: hidden;
+	scrollbar-gutter: stable;
+
+	@media (prefers-reduced-motion: no-preference) {
+		scroll-behavior: smooth;
+	}
+}
+
+:where(body) {
+	/* https://ics.media/entry/240411/ -- 文字列の折り返し -- */
+	overflow: auto;
+	word-break: normal;
+	overflow-wrap: anywhere;
+}
+
+:where(img),
+:where(video) {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* 実際にスタイルを当てる場合の指定はここから */
+:where(img) {
+	/* Chromeに対してのみ image-rendering: -webkit-optimize-contrast; を適用したい */
+	@media screen and (-webkit-min-device-pixel-ratio: 0) {
+		image-rendering: -webkit-optimize-contrast;
+		/* NOTE: Chromeに対してのみ適用されると言われている (min-resolution: 0.001dpcm) は Safari 16以降 適用されるようになっているため注意 */
+		_::-webkit-full-page-media,
+		_:future,
+		:root & {
+			/* Safariでデフォルト値に戻す */
+			image-rendering: auto;
+		}
+	}
+}
