@@ -3,7 +3,16 @@
 	"ignorePaths": [],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
-	"words": ["kiso", "oxfmt", "oxlint", "ZABLOG"],
+	"words": [
+		"breakin",
+		"kiso",
+		"oxfmt",
+		"oxlint",
+		"sizu",
+		"splatoon",
+		"ZABLOG",
+		"zenn"
+	],
 	"ignoreWords": [],
 	"import": []
 }
