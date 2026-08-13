@@ -1,4 +1,4 @@
-import type { Section } from "../lib/types";
+import type { Section } from "@/lib/types";
 
 /**
  * YouTubeチャンネル(@zabro1971)の動画を手動で管理するリスト。

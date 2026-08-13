@@ -20,8 +20,10 @@
 		"tailwindcss": "4.3.3"
 	},
 	"devDependencies": {
+		"@markuplint/astro-parser": "4.18.3",
 		"autoprefixer": "10.5.4",
 		"fast-xml-parser": "5.10.1",
+		"markuplint": "4.18.3",
 		"oxfmt": "0.62.0",
 		"oxlint": "1.77.0",
 		"wrangler": "4.118.0"

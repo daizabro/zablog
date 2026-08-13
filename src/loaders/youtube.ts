@@ -1,5 +1,5 @@
 import type { Loader } from "astro/loaders";
-import { YOUTUBE_VIDEOS } from "../config/youtube-videos";
+import { YOUTUBE_VIDEOS } from "@/constants/youtube-videos";
 
 type OEmbedResponse = {
 	title: string;

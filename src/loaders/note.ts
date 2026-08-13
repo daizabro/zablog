@@ -2,7 +2,7 @@ import type { Loader } from "astro/loaders";
 import {
 	NOTE_FALLBACK_SECTION,
 	NOTE_HASHTAG_RULES,
-} from "../config/note-hashtags";
+} from "@/constants/note-hashtags";
 import type { Section } from "../lib/types";
 
 const CREATOR = "dai_zabzab";

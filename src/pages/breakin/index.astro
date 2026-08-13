@@ -1,0 +1,15 @@
+---
+import EntryList from "@/components/EntryList/EntryList.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import { getEntriesBySection } from "@/lib/entries";
+
+const entries = await getEntriesBySection("breakin");
+---
+
+<Layout>
+	<h1>Breakin</h1>
+	<div>
+		<EntryList entries={entries.map((entry) => entry.data)} />
+	</div>
+</Layout>

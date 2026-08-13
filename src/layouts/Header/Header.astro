@@ -1,11 +1,11 @@
 ---
-import { SECTION_LABELS, SECTIONS } from "../../lib/types";
+import { SECTION_LABELS, SECTIONS } from "@/lib/types";
 ---
 
-<header class="site-header">
-	<nav class="site-header__nav">
-		<a href="/">ZABLOG</a>
-		<ul class="site-header__list">
+<header class="Header">
+	<p><a href="/">ZABLOG</a></p>
+	<nav class="Header__Nav">
+		<ul class="Header__List">
 			{
 				SECTIONS.map((section) => (
 					<li>
@@ -18,22 +18,23 @@ import { SECTION_LABELS, SECTIONS } from "../../lib/types";
 </header>
 
 <style>
-	.site-header {
+	.Header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
 		border-bottom: 1px solid #e0e0e0;
 	}
 
-	.site-header__nav {
+	.Header__Nav {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
 		padding: 1rem 1.5rem;
-		max-width: 960px;
-		margin-inline: auto;
 	}
 
-	.site-header__list {
+	.Header__List {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1.25rem;

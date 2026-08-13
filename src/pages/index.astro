@@ -1,9 +1,10 @@
 ---
-import Hero from "../components/Hero/Hero.astro";
-import EntryList from "../components/EntryList/EntryList.astro";
-import Layout from "../layouts/Layout.astro";
-import { getLatestEntries } from "../lib/entries";
-import { SECTION_LABELS, SECTIONS } from "../lib/types";
+import Hero from "@/components/Hero/Hero.astro";
+import EntryList from "@/components/EntryList/EntryList.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import { getLatestEntries } from "@/lib/entries";
+import { SECTION_LABELS, SECTIONS } from "@/lib/types";
 
 const latestEntries = await getLatestEntries(10);
 ---
@@ -11,13 +12,11 @@ const latestEntries = await getLatestEntries(10);
 <Layout>
 	<Hero />
 
-	<main class="page">
-		<section>
-			<p>
-				害虫駆除業務からフロントエンドエンジニアに転向。趣味はブレイキンとスプラトゥーンです。
-				noteやZenn、しずかなインターネット、YouTubeに散らばっている発信をここにまとめています。
-			</p>
-		</section>
+	<div>
+		<p>
+			害虫駆除業務からフロントエンドエンジニアに転向。趣味はブレイキンとスプラトゥーンです。
+			noteやZenn、しずかなインターネット、YouTubeに散らばっている発信をここにまとめています。
+		</p>
 
 		<section>
 			<h2>セクション</h2>
@@ -36,19 +35,10 @@ const latestEntries = await getLatestEntries(10);
 			<h2>最新の更新</h2>
 			<EntryList entries={latestEntries.map((entry) => entry.data)} />
 		</section>
-	</main>
+	</div>
 </Layout>
 
 <style>
-	.page {
-		max-width: 960px;
-		margin-inline: auto;
-		padding: 1.5rem;
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
-
 	.section-links {
 		display: flex;
 		flex-wrap: wrap;

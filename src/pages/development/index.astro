@@ -1,0 +1,25 @@
+---
+import EntryList from "@/components/EntryList/EntryList.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getEntriesBySection } from "@/lib/entries";
+
+const entries = await getEntriesBySection("development");
+---
+
+<Layout
+	title="Development"
+	description="フロントエンドエンジニアとしてのスキル紹介と技術記事。"
+>
+	<h1>Development</h1>
+
+	<section>
+		<h2>About</h2>
+		<!-- TODO: 経歴・スキル紹介を書く -->
+		<p>フロントエンドエンジニアとしてのスキルや経歴はここに記載予定です。</p>
+	</section>
+
+	<section>
+		<h2>記事</h2>
+		<EntryList entries={entries.map((entry) => entry.data)} />
+	</section>
+</Layout>

@@ -1,0 +1,16 @@
+---
+import EntryList from "@/components/EntryList/EntryList.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import { getEntriesBySection } from "@/lib/entries";
+
+const entries = await getEntriesBySection("personality");
+---
+
+<Layout
+	title="Personality"
+	description="ポエムや個人的な意見、イベントレポート、日記。"
+>
+	<h1>Personality</h1>
+	<EntryList entries={entries.map((entry) => entry.data)} />
+</Layout>
