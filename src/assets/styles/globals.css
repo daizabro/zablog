@@ -35,6 +35,19 @@
 	overflow: auto;
 	word-break: normal;
 	overflow-wrap: anywhere;
+	position: relative;
+	isolation: isolate;
+
+	&::before {
+		display: block;
+		content: "";
+		position: absolute;
+		inset: 0;
+		opacity: 0.3;
+		background-image: url("src/assets/images/background.png");
+		background-size: 800px auto;
+		z-index: -1;
+	}
 }
 
 :where(img),
