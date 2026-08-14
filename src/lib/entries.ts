@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import type { Section } from "./types";
+import type { Section } from "@/constants/types";
 
 const COLLECTIONS = ["note", "zenn", "sizu", "youtube"] as const;
 

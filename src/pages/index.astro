@@ -1,58 +1,35 @@
 ---
 import Hero from "@/components/Hero/Hero.astro";
-import EntryList from "@/components/EntryList/EntryList.astro";
+import Container from "@/components/Container/Container.astro";
 import Layout from "@/layouts/Layout.astro";
+import Section from "./_components//Section/Section.astro";
+import EntryList from "@/components/EntryList/EntryList.astro";
 
 import { getLatestEntries } from "@/lib/entries";
-import { SECTION_LABELS, SECTIONS } from "@/lib/types";
+import SITEMAP from "@/constants/sitemap";
 
-const latestEntries = await getLatestEntries(10);
+const latestEntries = await getLatestEntries(3);
 ---
 
 <Layout>
 	<Hero />
 
-	<div>
+	<Container>
 		<p>
-			害虫駆除業務からフロントエンドエンジニアに転向。趣味はブレイキンとスプラトゥーンです。
+			TODO: 何か良さげな文章に差し替える<br />
+			害虫駆除業務からフロントエンドエンジニアに転向。<br />
+			趣味はブレイキンとスプラトゥーンです。<br />
 			noteやZenn、しずかなインターネット、YouTubeに散らばっている発信をここにまとめています。
 		</p>
 
-		<section>
-			<h2>セクション</h2>
-			<ul class="section-links">
-				{
-					SECTIONS.map((section) => (
-						<li>
-							<a href={`/${section}`}>{SECTION_LABELS[section]}</a>
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
-		<section>
-			<h2>最新の更新</h2>
+		<Section heading="Latest Entries">
 			<EntryList entries={latestEntries.map((entry) => entry.data)} />
-		</section>
-	</div>
+		</Section>
+
+		{
+			SITEMAP.map((section) => (
+				<Section heading={section.heading} href={section.href} />
+			))
+		}
+	</Container>
 </Layout>
-
-<style>
-	.section-links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		list-style: none;
-		padding: 0;
-	}
-
-	.section-links a {
-		display: inline-block;
-		padding: 0.5rem 1rem;
-		border: 1px solid #e0e0e0;
-		border-radius: 0.5rem;
-		text-decoration: none;
-		color: inherit;
-	}
-</style>

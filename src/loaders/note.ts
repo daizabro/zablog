@@ -3,7 +3,7 @@ import {
 	NOTE_FALLBACK_SECTION,
 	NOTE_HASHTAG_RULES,
 } from "@/constants/note-hashtags";
-import type { Section } from "../lib/types";
+import type { Section } from "@/constants/types";
 
 const CREATOR = "dai_zabzab";
 

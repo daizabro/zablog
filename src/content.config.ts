@@ -5,10 +5,10 @@
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 
-import { noteLoader } from "./loaders/note";
-import { sizuLoader } from "./loaders/sizu";
-import { youtubeLoader } from "./loaders/youtube";
-import { zennLoader } from "./loaders/zenn";
+import { noteLoader } from "@/loaders/note";
+import { sizuLoader } from "@/loaders/sizu";
+import { youtubeLoader } from "@/loaders/youtube";
+import { zennLoader } from "@/loaders/zenn";
 import { SECTIONS, SOURCES } from "@/constants/types";
 
 const entrySchema = z.object({

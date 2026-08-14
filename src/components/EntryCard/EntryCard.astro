@@ -1,5 +1,5 @@
 ---
-import { SOURCE_LABELS, type Entry } from "../../lib/types";
+import { SOURCE_LABELS, type Entry } from "@/constants/types";
 
 type Props = {
 	entry: Entry;
@@ -18,7 +18,12 @@ const formattedDate = entry.publishedAt.toLocaleDateString("ja-JP", {
 	<a class="entry-card__link" href={entry.url} target="_blank" rel="noopener">
 		{
 			entry.thumbnail && (
-				<img class="entry-card__thumbnail" src={entry.thumbnail} alt="" loading="lazy" />
+				<img
+					class="entry-card__thumbnail"
+					src={entry.thumbnail}
+					alt=""
+					loading="lazy"
+				/>
 			)
 		}
 		<div class="entry-card__body">

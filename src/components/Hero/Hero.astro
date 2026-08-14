@@ -3,8 +3,16 @@ import { Image } from "astro:assets";
 import logo from "@/assets/images/logo.png";
 ---
 
-<div>
-	<h1>
+<div class="Hero">
+	<h1 class="Hero__Heading">
 		<Image src={logo} alt="ZABLOG" />
 	</h1>
 </div>
+
+<style>
+	.Hero__Heading {
+		margin-inline: auto;
+		max-width: 50rem;
+		width: 100%;
+	}
+</style>

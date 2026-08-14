@@ -1,0 +1,26 @@
+---
+type Props = {
+	heading: string;
+	href?: string;
+};
+const { heading, href } = Astro.props;
+---
+
+<section class="Section">
+	<h2 class="Section__Title">{heading}</h2>
+	<slot />
+
+	{href && <a href={href}>詳しく見る</a>}
+</section>
+
+<style>
+	.Section {
+		padding-block: 1.5rem;
+	}
+
+	.Section__Title {
+		font-family: "Limelight", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+	}
+</style>

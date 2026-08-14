@@ -1,28 +1,42 @@
 ---
-import { SECTION_LABELS, SECTIONS } from "@/lib/types";
+import SITEMAP from "@/constants/sitemap";
 ---
 
 <header class="Header">
-	<p><a href="/">ZABLOG</a></p>
-	<nav class="Header__Nav">
-		<ul class="Header__List">
-			{
-				SECTIONS.map((section) => (
-					<li>
-						<a href={`/${section}`}>{SECTION_LABELS[section]}</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
+	<div class="Header__Inner">
+		<a href="/">ZABLOG</a>
+		<nav class="Header__Nav" aria-label="グローバル">
+			<ul class="Header__List">
+				{
+					SITEMAP.map((section) => (
+						<li>
+							<a href={section.href}>{section.heading}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
 </header>
 
 <style>
 	.Header {
-		position: sticky;
+		position: fixed;
 		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
 		z-index: 100;
-		border-bottom: 1px solid #e0e0e0;
+	}
+
+	.Header__Inner {
+		width: var(--content-width);
+		margin-inline: auto;
+		padding-block: 0.5rem;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		column-gap: 1rem;
 	}
 
 	.Header__Nav {
