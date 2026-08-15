@@ -1,18 +1,106 @@
 ---
 import { Image } from "astro:assets";
 import logo from "@/assets/images/logo.png";
+import bgHero01 from "@/assets/images/bg_hero_01.png";
+import bgHero02 from "@/assets/images/bg_hero_02.png";
+import bgHero03 from "@/assets/images/bg_hero_03.png";
+import bgHero04 from "@/assets/images/bg_hero_04.png";
+import bgHero05 from "@/assets/images/bg_hero_05.png";
+
+const bgImages = [bgHero01, bgHero02, bgHero03, bgHero04, bgHero05];
 ---
 
 <div class="Hero">
 	<h1 class="Hero__Heading">
 		<Image src={logo} alt="ZABLOG" />
 	</h1>
+	<div class="Hero__Background">
+		<div class="Hero__Splide splide">
+			<div class="splide__track">
+				<ul class="splide__list">
+					{
+						bgImages.map((image) => (
+							<li class="splide__slide">
+								<Image
+									src={image}
+									alt=""
+									loading="eager"
+									fetchpriority="high"
+								/>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 
 <style>
+	.Hero {
+		position: relative;
+		aspect-ratio: 16/9;
+		width: 100%;
+		max-height: 50rem;
+		isolation: isolate;
+		display: grid;
+		place-items: center;
+	}
 	.Hero__Heading {
+		position: relative;
+		z-index: 1;
 		margin-inline: auto;
 		max-width: 50rem;
 		width: 100%;
 	}
+
+	.Hero__Background {
+		position: absolute;
+		inset: 4rem;
+		background-size: cover;
+		background-position: center;
+		opacity: 0.5;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -0.5rem;
+			left: -2rem;
+			right: -2rem;
+			bottom: -0.5rem;
+			background-color: black;
+			opacity: 0.5;
+			z-index: 1;
+		}
+	}
+
+	.Hero__Splide,
+	.Hero__Splide .splide__track,
+	.Hero__Splide .splide__list,
+	.Hero__Splide .splide__slide {
+		height: 100%;
+	}
+	.Hero__Splide .splide__slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 </style>
+
+<script>
+	import Splide from "@splidejs/splide";
+
+	document.querySelectorAll<HTMLElement>(".Hero__Splide").forEach((el) => {
+		new Splide(el, {
+			type: "fade",
+			rewind: true,
+			drag: false,
+			arrows: false,
+			pagination: false,
+			autoplay: true,
+			interval: 4000,
+			speed: 4000,
+			pauseOnHover: false,
+		}).mount();
+	});
+</script>
