@@ -2,7 +2,7 @@ import type { Config } from "@markuplint/ml-config";
 
 const config: Config = {
 	extends: ["markuplint:html-standard", "markuplint:a11y"],
-	excludeFiles: ["./src/pages/_layouts"], // CMS側で設定している共通の記述のため
+	excludeFiles: ["./src/layouts/Layout.astro"],
 	parser: {
 		"\\.astro$": "@markuplint/astro-parser",
 	},
