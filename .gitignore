@@ -24,4 +24,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-
+# storybook
+storybook-static
+debug-storybook.log

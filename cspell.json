@@ -8,22 +8,22 @@
 			"addWords": true
 		}
 	],
-	"dictionaries": ["custom-dictionary"],
 	"words": [
+		"autodocs",
 		"breakin",
 		"dai_zabzab",
 		"eyecatch",
 		"kiso",
 		"Markuplint",
+		"MindBEMding",
 		"oxfmt",
 		"oxlint",
 		"sizu",
 		"splatoon",
-		"ZABLOG",
-		"zenn",
-		"MindBEMding",
 		"splide",
-		"splidejs"
+		"splidejs",
+		"ZABLOG",
+		"zenn"
 	],
 	"ignoreWords": [],
 	"import": []
