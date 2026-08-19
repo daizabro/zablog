@@ -7,7 +7,7 @@ import autoprefixer from "autoprefixer";
 // https://astro.build/config
 export default defineConfig({
 	adapter: cloudflare({
-		imageService: "cloudflare",
+		imageService: "compile",
 	}),
 	vite: {
 		plugins: [tailwindcss()],
