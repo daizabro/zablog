@@ -1,99 +1,138 @@
 ---
+import { Image } from "astro:assets";
 import { SOURCE_LABELS, type Entry } from "@/constants/types";
+import type { HTMLAttributes } from "astro/types";
+import Sticker01 from "@/assets/images/image_sticker_01.png";
+import Sticker02 from "@/assets/images/image_sticker_02.png";
 
-type Props = {
-	entry: Entry;
-};
+import { format } from "date-fns";
 
-const { entry } = Astro.props;
+type Props = Entry & HTMLAttributes<"article">;
 
-const formattedDate = entry.publishedAt.toLocaleDateString("ja-JP", {
-	year: "numeric",
-	month: "long",
-	day: "numeric",
-});
+const { publishedAt, url, thumbnail, title, excerpt, source } = Astro.props;
 ---
 
-<li class="entry-card">
-	<a class="entry-card__link" href={entry.url} target="_blank" rel="noopener">
-		{
-			entry.thumbnail && (
-				<img
-					class="entry-card__thumbnail"
-					src={entry.thumbnail}
-					alt=""
-					loading="lazy"
-				/>
-			)
-		}
-		<div class="entry-card__body">
-			<span class="entry-card__source">{SOURCE_LABELS[entry.source]}</span>
-			<h3 class="entry-card__title">{entry.title}</h3>
-			{entry.excerpt && <p class="entry-card__excerpt">{entry.excerpt}</p>}
-			<time class="entry-card__date" datetime={entry.publishedAt.toISOString()}>
-				{formattedDate}
-			</time>
-		</div>
-	</a>
-</li>
+<a class="EntryCard" href={url} target="_blank" rel="noopener">
+	<span class="EntryCard__Background"></span>
+	<Image
+		class="EntryCard__Sticker01"
+		src={Sticker01}
+		alt=""
+		width={Sticker01.width}
+		height={Sticker01.height}
+		loading="lazy"
+	/>
+	<Image
+		class="EntryCard__Sticker02"
+		src={Sticker02}
+		alt=""
+		width={Sticker02.width}
+		height={Sticker02.height}
+		loading="lazy"
+	/>
+	<Image
+		class="EntryCard__Thumbnail"
+		src={thumbnail ? thumbnail : "https://placehold.jp/800x450.png"}
+		alt=""
+		loading="lazy"
+		width={800}
+		height={450}
+	/>
+	<div class="EntryCard__Body">
+		<h3 class="EntryCard__title">{title}</h3>
+
+		{excerpt && <p class="EntryCard__Excerpt">{excerpt}</p>}
+		<time class="EntryCard__Date" datetime={publishedAt.toISOString()}>
+			{format(publishedAt, "yyyy/MM/dd")}
+		</time>
+	</div>
+
+	<ul class="EntryCard__labelList">
+		<li># {SOURCE_LABELS[source]}</li>
+	</ul>
+</a>
 
 <style>
-	.entry-card {
-		list-style: none;
+	.EntryCard {
+		position: relative;
+		display: grid;
+		row-gap: 1rem;
+		grid-template-rows: auto 1fr;
+		isolation: isolate;
+		padding: 1.5rem;
+		height: 100%;
+		align-content: start;
 	}
 
-	.entry-card__link {
-		display: flex;
-		gap: 1rem;
-		color: inherit;
-		text-decoration: none;
-		border: 1px solid #e0e0e0;
+	.EntryCard__Sticker01 {
+		position: absolute;
+		top: -1.5rem;
+		right: -1.5rem;
+		width: 6rem;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
+		transform: rotate(15deg);
+	}
+	.EntryCard__Sticker02 {
+		position: absolute;
+		top: -0.5rem;
+		left: -0.5rem;
+		width: 6rem;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
+		transform: rotate(-15deg);
+	}
+
+	.EntryCard__Background {
+		display: block;
+		position: absolute;
 		border-radius: 0.5rem;
-		padding: 1rem;
+		background-color: white;
+		inset: 0;
+		z-index: -1;
+		box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0.125rem;
+			border: 2px solid #2f2f2f;
+			border-radius: 0.5rem;
+		}
 	}
 
-	.entry-card__link:hover {
-		border-color: #b0b0b0;
-	}
-
-	.entry-card__thumbnail {
-		width: 8rem;
-		height: 4.5rem;
-		object-fit: cover;
-		border-radius: 0.25rem;
-		flex-shrink: 0;
-	}
-
-	.entry-card__body {
+	.EntryCard__labelList {
+		position: absolute;
 		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		min-width: 0;
+		gap: 0.5rem;
+		bottom: 0.5rem;
+		left: -0.25rem;
+
+		li {
+			border-radius: 0.5rem;
+			padding: 0.25rem;
+			background-color: white;
+			box-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
+			font-size: 0.75rem;
+			&:nth-child(odd) {
+				transform: rotate(-4deg);
+			}
+		}
 	}
 
-	.entry-card__source {
-		font-size: 0.75rem;
-		color: #666;
+	.EntryCard__Thumbnail {
+		width: 100%;
+		border-radius: 0.5rem;
+		aspect-ratio: 16/9;
+		object-fit: cover;
+	}
+	.EntryCard__Body {
+		display: grid;
+		row-gap: 1rem;
+		grid-template-rows: auto auto 1fr;
 	}
 
-	.entry-card__title {
-		font-size: 1rem;
-		margin: 0;
-	}
-
-	.entry-card__excerpt {
+	.EntryCard__Date {
+		justify-self: end;
+		align-self: end;
 		font-size: 0.875rem;
-		color: #444;
-		margin: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-	}
-
-	.entry-card__date {
-		font-size: 0.75rem;
-		color: #666;
 	}
 </style>
