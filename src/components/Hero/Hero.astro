@@ -35,6 +35,7 @@ const bgImages = [bgHero01, bgHero02, bgHero03, bgHero04, bgHero05, bgHero06];
 			</div>
 		</div>
 	</div>
+	<span aria-hidden="true" class="Hero__Tagging">Daizabzab</span>
 </div>
 
 <style>
@@ -91,6 +92,18 @@ const bgImages = [bgHero01, bgHero02, bgHero03, bgHero04, bgHero05, bgHero06];
 		height: 100%;
 		object-fit: cover;
 		border-radius: 0.5rem;
+	}
+
+	.Hero__Tagging {
+		z-index: -4;
+		position: absolute;
+		bottom: 1rem;
+		right: 1.75rem;
+		color: #526e4d;
+		font-family: "Festive", cursive;
+		font-size: 2rem;
+		transform: rotate(-10deg);
+		letter-spacing: 0.05em;
 	}
 </style>
 
