@@ -7,6 +7,7 @@ import bgHero03 from "@/assets/images/bg_hero_03.png";
 import bgHero04 from "@/assets/images/bg_hero_04.png";
 import bgHero05 from "@/assets/images/bg_hero_05.png";
 import bgHero06 from "@/assets/images/bg_hero_06.png";
+import imageGraffiti from "@/assets/images/image_graffiti_01.png";
 
 const bgImages = [bgHero01, bgHero02, bgHero03, bgHero04, bgHero05, bgHero06];
 ---
@@ -35,6 +36,7 @@ const bgImages = [bgHero01, bgHero02, bgHero03, bgHero04, bgHero05, bgHero06];
 			</div>
 		</div>
 	</div>
+	<Image src={imageGraffiti} alt="" class="Hero__Graffiti" />
 	<span aria-hidden="true" class="Hero__Tagging">Daizabzab</span>
 </div>
 
@@ -92,6 +94,15 @@ const bgImages = [bgHero01, bgHero02, bgHero03, bgHero04, bgHero05, bgHero06];
 		height: 100%;
 		object-fit: cover;
 		border-radius: 0.5rem;
+	}
+
+	.Hero__Graffiti {
+		z-index: -5;
+		position: absolute;
+		inset: 0;
+		opacity: 0.05;
+		width: 100%;
+		mask-image: linear-gradient(to bottom, black 0 80%, transparent 100%);
 	}
 
 	.Hero__Tagging {
