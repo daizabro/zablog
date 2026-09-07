@@ -4,6 +4,7 @@ import { SOURCE_LABELS, type Entry } from "@/constants/types";
 import type { HTMLAttributes } from "astro/types";
 import Sticker01 from "@/assets/images/image_sticker_01.png";
 import Sticker02 from "@/assets/images/image_sticker_02.png";
+import SizuThumbnail from "@/assets/images/image_sizu.png";
 
 import { format } from "date-fns";
 
@@ -30,14 +31,36 @@ const { publishedAt, url, thumbnail, title, excerpt, source } = Astro.props;
 		height={Sticker02.height}
 		loading="lazy"
 	/>
-	<Image
-		class="EntryCard__Thumbnail"
-		src={thumbnail ? thumbnail : "https://placehold.jp/800x450.png"}
-		alt=""
-		loading="lazy"
-		width={800}
-		height={450}
-	/>
+	{
+		thumbnail ? (
+			<Image
+				class="EntryCard__Thumbnail"
+				src={thumbnail}
+				alt=""
+				loading="lazy"
+				width={800}
+				height={450}
+			/>
+		) : source === "sizu" ? (
+			<Image
+				class="EntryCard__Thumbnail"
+				src={SizuThumbnail}
+				alt=""
+				loading="lazy"
+				width={SizuThumbnail.width}
+				height={SizuThumbnail.height}
+			/>
+		) : (
+			<Image
+				class="EntryCard__Thumbnail"
+				src="https://placehold.jp/800x450.png"
+				alt=""
+				loading="lazy"
+				width={800}
+				height={450}
+			/>
+		)
+	}
 	<div class="EntryCard__Body">
 		<h3 class="EntryCard__title">{title}</h3>
 

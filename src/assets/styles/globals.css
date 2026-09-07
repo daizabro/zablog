@@ -30,6 +30,10 @@
 	}
 }
 
+:where(main) {
+	overflow: hidden;
+}
+
 :where(body) {
 	/* https://ics.media/entry/240411/ -- 文字列の折り返し -- */
 	overflow: auto;

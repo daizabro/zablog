@@ -3,7 +3,13 @@
 		"allow": [
 			"Bash(*)",
 			"WebFetch(domain:storybook.js.org)",
-			"WebFetch(domain:docs.astro.build)"
+			"WebFetch(domain:docs.astro.build)",
+			"WebFetch(domain:note.com)",
+			"WebFetch(domain:zenn.dev)",
+			"WebFetch(domain:sizu.me)",
+			"WebFetch(domain:www.youtube.com)"
 		]
-	}
+	},
+	"enableAllProjectMcpServers": true,
+	"enabledMcpjsonServers": ["Astro docs"]
 }

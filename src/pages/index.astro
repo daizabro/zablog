@@ -4,6 +4,8 @@ import Container from "@/components/Container/Container.astro";
 import Layout from "@/layouts/Layout.astro";
 import Section from "./_components//Section/Section.astro";
 import EntryList from "@/components/EntryList/EntryList.astro";
+import { Image } from "astro:assets";
+import Graffiti from "@/assets/images/image_graffiti_02.png";
 
 import { getLatestEntries } from "@/lib/entries";
 import SITEMAP from "@/constants/sitemap";
@@ -22,7 +24,8 @@ const latestEntries = await getLatestEntries(3);
 			noteやZenn、しずかなインターネット、YouTubeに散らばっている発信をここにまとめています。
 		</p>
 
-		<Section heading="Latest Entries">
+		<Section heading="Latest Entries" className="TopEntry">
+			<Image src={Graffiti} alt="" />
 			<EntryList entries={latestEntries.map((entry) => entry.data)} />
 		</Section>
 
@@ -33,3 +36,20 @@ const latestEntries = await getLatestEntries(3);
 		}
 	</Container>
 </Layout>
+
+<style>
+	.TopEntry {
+		position: relative;
+		isolation: isolate;
+		> :global(img) {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 25rem;
+			object-fit: contain;
+			z-index: -1;
+			transform: rotate(23deg) translate(-34%, 27%);
+			opacity: 0.7;
+		}
+	}
+</style>

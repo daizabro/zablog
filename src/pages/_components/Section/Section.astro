@@ -1,12 +1,14 @@
 ---
-type Props = {
+import type { HTMLAttributes } from "astro/types";
+type Props = Omit<HTMLAttributes<"section">, "class"> & {
 	heading: string;
 	href?: string;
+	className?: string;
 };
-const { heading, href } = Astro.props;
+const { heading, href, className, ...restProps } = Astro.props;
 ---
 
-<section class="Section">
+<section class:list={["Section", className]} {...restProps}>
 	<h2 class="Section__Title">{heading}</h2>
 	<slot />
 
@@ -15,7 +17,7 @@ const { heading, href } = Astro.props;
 
 <style>
 	.Section {
-		padding-block: 1.5rem;
+		padding-block: 3.5rem;
 	}
 
 	.Section__Title {
