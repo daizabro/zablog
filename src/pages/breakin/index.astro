@@ -1,4 +1,5 @@
 ---
+import Container from "@/components/Container/Container.astro";
 import EntryList from "@/components/EntryList/EntryList.astro";
 import Layout from "@/layouts/Layout.astro";
 
@@ -9,7 +10,7 @@ const entries = await getEntriesBySection("breakin");
 
 <Layout>
 	<h1>Breakin'</h1>
-	<div>
+	<Container>
 		<EntryList entries={entries.map((entry) => entry.data)} />
-	</div>
+	</Container>
 </Layout>

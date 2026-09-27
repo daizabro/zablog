@@ -1,4 +1,5 @@
 ---
+import Container from "@/components/Container/Container.astro";
 import EntryList from "@/components/EntryList/EntryList.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getEntriesBySection } from "@/lib/entries";
@@ -20,6 +21,8 @@ const entries = await getEntriesBySection("development");
 
 	<section>
 		<h2>記事</h2>
-		<EntryList entries={entries.map((entry) => entry.data)} />
+		<Container>
+			<EntryList entries={entries.map((entry) => entry.data)} />
+		</Container>
 	</section>
 </Layout>
