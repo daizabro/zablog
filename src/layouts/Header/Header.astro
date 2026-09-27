@@ -1,11 +1,23 @@
 ---
 import SITEMAP from "@/constants/sitemap";
+import { Image } from "astro:assets";
+import Icon from "@/assets/images/image_sticker_01.png";
 ---
 
-<header class="Header">
+<header class="Header" id="Header">
 	<div class="Header__Inner">
 		<nav class="Header__Nav" aria-label="グローバル">
 			<ul class="Header__List">
+				<li>
+					<a href="/"
+						><Image
+							src={Icon}
+							alt="ZABLOG"
+							width={Icon.width}
+							height={Icon.height}
+						/></a
+					>
+				</li>
 				{
 					SITEMAP.map((section) => (
 						<li>
@@ -18,6 +30,24 @@ import SITEMAP from "@/constants/sitemap";
 	</div>
 </header>
 
+<script>
+	const header = document.getElementById("Header");
+
+	if (header) {
+		const updateHeaderVisibility = () => {
+			header.classList.toggle(
+				"is-visible",
+				window.scrollY >= window.innerHeight,
+			);
+		};
+
+		updateHeaderVisibility();
+		document.addEventListener("scroll", updateHeaderVisibility, {
+			passive: true,
+		});
+	}
+</script>
+
 <style>
 	.Header {
 		position: fixed;
@@ -26,12 +56,25 @@ import SITEMAP from "@/constants/sitemap";
 		right: 0;
 		width: 100%;
 		z-index: 100;
+		background-color: white;
+		box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+		transform: translateY(-100%);
+		opacity: 0;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
+		pointer-events: none;
+
+		&.is-visible {
+			transform: translateY(0);
+			opacity: 1;
+			pointer-events: auto;
+		}
 	}
 
 	.Header__Inner {
 		width: var(--content-width);
 		margin-inline: auto;
-		padding-block: 0.5rem;
 		display: grid;
 		justify-content: end;
 	}
@@ -45,20 +88,22 @@ import SITEMAP from "@/constants/sitemap";
 		gap: 1rem;
 		padding: 1rem 1.5rem;
 		position: relative;
-		border-radius: 999px;
-		background-color: rgba(255, 255, 255, 0.8);
 	}
 
 	.Header__List {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1.25rem;
-		list-style: none;
+		gap: 2.25rem;
+		align-items: center;
 
 		> li {
 			font-family: "Luckiest Guy", sans-serif;
 			font-weight: 400;
 			font-style: normal;
+			font-size: 1.75rem;
+		}
+		img {
+			width: 3.5rem;
 		}
 	}
 </style>
